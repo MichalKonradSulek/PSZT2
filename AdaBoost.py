@@ -15,16 +15,18 @@ def train_test_split(X, y, test_size=0.3, a=None): #dzieli dane treningowe od da
 
     return X_train, X_test, y_train, y_test
 
-dataset = pd.read_csv('boston.txt', delim_whitespace=True, header=None)
-dataset = dataset.sample(frac=1) #losowo wybrane 100% próbek
-dataset.columns = ['CRIM', 'ZN', 'INDUS', 'CHAS', 'NOX', 'RM', 'AGE', 'DIS', 'RAD', 'TAX', 'PTRATIO', 'B', 'LSTAT', 'MEDV']
+if __name__ == '__main__':
 
-X = dataset.drop(['CHAS'], axis=1) #CHAS jest atrybutem predykcyjnym, usuwamy ze zbioru danych, bedziemy go przewidywac
-Y = dataset['CHAS'] #Y jest zbiorem danych do oceny modelu
+    dataset = pd.read_csv('boston.txt', delim_whitespace=True, header=None)
+    dataset = dataset.sample(frac=1) #losowo wybrane 100% próbek
+    dataset.columns = ['CRIM', 'ZN', 'INDUS', 'CHAS', 'NOX', 'RM', 'AGE', 'DIS', 'RAD', 'TAX', 'PTRATIO', 'B', 'LSTAT', 'MEDV']
 
-#dane w formacie tablicy
-X_array = np.array(X)
-Y_array = np.array(Y)
+    X = dataset.drop(['CHAS'], axis=1) #CHAS jest atrybutem predykcyjnym, usuwamy ze zbioru danych, bedziemy go przewidywac
+    Y = dataset['CHAS'] #Y jest zbiorem danych do oceny modelu
 
-X_train, X_test, y_train, y_test = train_test_split(X_array, Y_array, test_size=0.3)
-print(X_train)
+    #dane w formacie tablicy
+    X_array = np.array(X)
+    Y_array = np.array(Y)
+
+    X_train, X_test, y_train, y_test = train_test_split(X_array, Y_array, test_size=0.3)
+    print(X_train)
